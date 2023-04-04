@@ -1,5 +1,5 @@
-// Author:
-// Title:
+// Author: Mary Jiang
+// Title: Big fan
 
 #ifdef GL_ES
 precision mediump float;

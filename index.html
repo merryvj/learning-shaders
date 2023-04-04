@@ -12,25 +12,52 @@
             background-color: #000;
         }
     
-        .glslGallery_item {
-            
-            overflow: hidden;
+        .glslGallery {
+            max-width: 600px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 12px;
+            column-gap: 12px;
+
         }
+
+        canvas {
+            display: block;
+            width: 100%;
+            border-radius: 12px;
+        }
+
+
     </style>
 </head>
 <body>
+
     <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/patriciogonzalezvivo/glslGallery/gh-pages/build/glslGallery.css">
+    
+    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/patriciogonzalezvivo/glslGallery/gh-pages/build/glslGallery.css"> -->
    
-    <div class="glslgallery">
-        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/1_yayoi.frag" width="800" height="800"></canvas>
-        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/2_clarity.frag" width="800" height="800"></canvas>
-        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/3_meander.frag" width="800" height="800"></canvas>
-        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/4_blurmap.frag" width="800" height="800"></canvas>
-        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/5_starinout.frag" width="800" height="800"></canvas>
-        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/6_fan.frag" width="800" height="800"></canvas>
+    <div class="glslGallery">
+        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/6_fan.frag"></canvas>
+        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/5_starinout.frag"></canvas>
+        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/4_blurmap.frag"></canvas>
+        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/3_meander.frag"></canvas>
+        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/2_clarity.frag"></canvas>
+        <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/1_yayoi.frag"></canvas>
 
 
     </div>
+    <script>
+        let galleryEl = document.getElementsByClassName("glslGallery");
+
+        let canvases = document.querySelectorAll(".glslCanvas");
+        console.log(canvases);
+        canvases.forEach((canvas) => {
+            canvas.width  = 1280;
+            canvas.height = 720;
+        });
+
+    </script>
+
 </body>
 </html>
