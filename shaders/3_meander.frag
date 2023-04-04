@@ -1,3 +1,6 @@
+// Author: Mary Jiang
+// Title: Meandering
+
 #ifdef GL_ES
 precision mediump float;
 #endif

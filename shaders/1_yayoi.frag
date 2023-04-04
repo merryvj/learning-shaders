@@ -1,5 +1,5 @@
-// Author:
-// Title:
+// Author: Mary Jiang
+// Title: Yayoi-inspired
 
 #ifdef GL_ES
 precision mediump float;

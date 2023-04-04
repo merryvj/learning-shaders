@@ -9,11 +9,17 @@
 
     <style>
         body {
-            background-color: #000;
+            background-color: #fafafa;
+            background-image: url("noise.webp");
+            background-repeat: repeat!important;
+            background-size: 130px!important;
+
         }
     
+
         .glslGallery {
-            max-width: 600px;
+            z-index: 2;
+            max-width: 800px;
             margin: auto;
             display: grid;
             grid-template-columns: 1fr;
@@ -25,18 +31,40 @@
         canvas {
             display: block;
             width: 100%;
+            border-radius: 4px;
+            transition: 0.2s ease;
+        }
+
+        canvas:hover{
+            cursor: ne-resize;
             border-radius: 12px;
+        }
+
+    
+
+        @keyframes bg-noise {
+            0%, 100% { transform:translate(0, 0) }
+            10% { transform:translate(-5%, -10%) }
+            20% { transform:translate(-15%, 5%) }
+            30% { transform:translate(7%, -25%) }
+            40% { transform:translate(-5%, 25%) }
+            50% { transform:translate(-15%, 10%) }
+            60% { transform:translate(15%, 0%) }
+            70% { transform:translate(0%, 15%) }
+            80% { transform:translate(3%, 35%) }
+            90% { transform:translate(-10%, 10%) }
         }
 
 
     </style>
+
+    <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+
 </head>
 <body>
 
-    <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
-    
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/patriciogonzalezvivo/glslGallery/gh-pages/build/glslGallery.css"> -->
    
+    <div class="noise"></div>
     <div class="glslGallery">
         <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/6_fan.frag"></canvas>
         <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/5_starinout.frag"></canvas>
@@ -47,6 +75,7 @@
 
 
     </div>
+    
     <script>
         let galleryEl = document.getElementsByClassName("glslGallery");
 
@@ -55,6 +84,13 @@
         canvases.forEach((canvas) => {
             canvas.width  = 1280;
             canvas.height = 720;
+
+            canvas.addEventListener("click", (e) => {
+                let url = "https://github.com/merryvj/shader-gallery/blob/main/"
+                + e.target.getAttribute("data-fragment-url");
+                window.open(url, "_blank")
+
+            })
         });
 
     </script>

@@ -1,5 +1,5 @@
-// Author:
-// Title:
+// Author: Mary Jiang
+// Title: Stars to stars
 
 #ifdef GL_ES
 precision mediump float;

@@ -1,3 +1,6 @@
+// Author: Mary Jiang
+// Title: Moment of clarity
+
 #ifdef GL_ES
 precision mediump float;
 #endif
