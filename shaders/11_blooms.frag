@@ -1,5 +1,5 @@
 // Author: Mary Jiang
-// Title: Twinkle
+// Title: Blooms
 
 #ifdef GL_ES
 precision mediump float;

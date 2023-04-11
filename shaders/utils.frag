@@ -17,6 +17,12 @@ float rand3D(in vec3 co){
     return fract(sin(dot(co.xyz ,vec3(12.9898,78.233,144.7272))) * 43758.5453);
 }
 
+vec2 random2(vec2 st){
+    st = vec2( dot(st,vec2(127.1,311.7)),
+              dot(st,vec2(269.5,183.3)) );
+    return -1.0 + 2.0*fract(sin(st)*43758.5453123);
+}
+
 
 //http://www.iquilezles.org/www/articles/palettes/palettes.htm 
 vec3 cosPalette( float t , vec3 brightness, vec3 contrast, vec3 osc, vec3 phase)

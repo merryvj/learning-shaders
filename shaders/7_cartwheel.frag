@@ -40,14 +40,13 @@ vec2 tile(vec2 _st, float _zoom){
 }
 
 void main() {
-    vec2 st = gl_FragCoord.xy/u_resolution.xy;
-    st.x *= u_resolution.x/u_resolution.y;
-    //st = tile(st,15.);
+    vec2 uv = (gl_FragCoord.xy/u_resolution.xy) - .5;
+    uv.x *= u_resolution.x/u_resolution.y;
+    //uv = tile(uv,15.);
     vec3 color = vec3(0.);
-    st -= vec2(0.5);
-    st = rotate2d(sin(u_time + st.x)*PI ) * st;
-    st += vec2(0.5);
-    color += cross(st, .6);
+    uv = rotate2d(sin(u_time + uv.x)*PI ) * uv;
+    uv += vec2(0.5);
+    color += cross(uv, .6);
 
     gl_FragColor = vec4(color,1.0);
 }
