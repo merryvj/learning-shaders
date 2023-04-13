@@ -8,7 +8,10 @@
     
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+
         body {
+            font-family: 'DM Mono', monospace;
             background-color: #fafafa;
             background-image: url("noise.webp");
             background-repeat: repeat!important;
@@ -20,16 +23,16 @@
         .glslGallery {
             z-index: 2;
             max-width: 800px;
-            margin: auto;
+            margin: 2rem auto;
             display: grid;
             grid-template-columns: 1fr;
             row-gap: 12px;
             column-gap: 12px;
-
         }
 
         canvas {
             display: block;
+            position: relative;
             width: 100%;
             border-radius: 4px;
             transition: 0.2s ease;
@@ -40,6 +43,15 @@
             border-radius: 12px;
         }
 
+        #shaderTitle {
+            position: fixed;
+            left: 1.2rem;
+            top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            font-size: 1rem;
+   
+        }
     
 
         @keyframes bg-noise {
@@ -65,6 +77,7 @@
 
    
     <div class="noise"></div>
+    <h1 id="shaderTitle"> </h1>
     <div class="glslGallery">
         <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/10_pluripotent.frag"></canvas>
         <canvas class="glslGallery_item glslCanvas" data-fragment-url="shaders/11_blooms.frag"></canvas>
@@ -76,9 +89,11 @@
     
     <script>
         let galleryEl = document.getElementsByClassName("glslGallery");
+        let titleEl = document.getElementById("shaderTitle");
 
         let canvases = document.querySelectorAll(".glslCanvas");
-        console.log(canvases);
+
+
         canvases.forEach((canvas) => {
             canvas.width  = 1280;
             canvas.height = 720;
@@ -89,7 +104,17 @@
                 window.open(url, "_blank")
 
             })
+
+            canvas.addEventListener("mouseenter", (e) => {
+                let title = e.target.getAttribute("data-fragment-url").split("/")[1].split(".")[0];
+                titleEl.innerHTML = title;
+            })
+
+            canvas.addEventListener("mouseleave", (e) => {
+                titleEl.innerHTML = "";
+            })
         });
+        
 
     </script>
 
