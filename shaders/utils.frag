@@ -24,6 +24,8 @@ vec2 random2(vec2 st){
 }
 
 
+
+
 //http://www.iquilezles.org/www/articles/palettes/palettes.htm 
 vec3 cosPalette( float t , vec3 brightness, vec3 contrast, vec3 osc, vec3 phase)
 {
@@ -46,4 +48,45 @@ float box(in vec2 _st, in vec2 _size){
                     _size+vec2(0.1),
                     vec2(1.0)-_st);
     return uv.x*uv.y;
+}
+
+float lines(in vec2 pos, float b){
+    float scale = 10.;
+    pos *= scale;
+    return smoothstep(0.0,
+                    .5+b*.5,
+                    abs((sin(pos.x*3.1415)+b*2.0))*.5);
+}
+
+
+mat2 rotate2d(float _angle){
+    return mat2(cos(_angle),-sin(_angle),
+                sin(_angle),cos(_angle));
+}
+
+
+// Value noise by Inigo Quilez - iq/2013
+// https://www.shadertoy.com/view/lsf3WH
+float noiseVal(vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+    vec2 u = f*f*(3.0-2.0*f);
+    return mix( mix( random( i + vec2(0.0,0.0) ),
+                     random( i + vec2(1.0,0.0) ), u.x),
+                mix( random( i + vec2(0.0,1.0) ),
+                     random( i + vec2(1.0,1.0) ), u.x), u.y);
+}
+
+// Gradient Noise by Inigo Quilez - iq/2013
+// https://www.shadertoy.com/view/XdXGW8
+float noiseGra(vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+
+    vec2 u = f*f*(3.0-2.0*f);
+
+    return mix( mix( dot( random2(i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ),
+                     dot( random2(i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
+                mix( dot( random2(i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
+                     dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
 }
