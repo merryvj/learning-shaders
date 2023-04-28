@@ -1,5 +1,5 @@
-// Author:
-// Title:
+// Author: Mary Jiang
+// Title: Trawling
 
 #ifdef GL_ES
 precision mediump float;
@@ -25,8 +25,13 @@ vec2 random2( vec2 p ) {
 }
 
 vec2 getPos(vec2 p) {
-    vec2 n = random2(p) * u_time;
+    vec2 n = random2(p) * u_time * .8;
     return sin(n) * .4;
+}
+
+vec3 cosPalette( float t , vec3 brightness, vec3 contrast, vec3 osc, vec3 phase)
+{
+    return brightness + contrast*cos( 6.28318*(osc*t+phase) );
 }
 
 void main() {
@@ -37,16 +42,10 @@ void main() {
     
     vec2 i_uv = floor(uv);
     vec2 f_uv = fract(uv) - .5;
-    
-    
-    float m_dist = 1.;
-
-    //vec2 point = random2(i_uv);
     vec2 point = getPos(i_uv);
     float d = length(f_uv - point);
-    float m = smoothstep(.1 * random(f_uv) + .08 + random(i_uv) * .06 + cos(u_time) * .04, 0., d);
-    vec3 color = vec3(m) - vec3(random(i_uv));
-    
-
+    float m = smoothstep(.1 * random(f_uv) + .04 + random(i_uv) * .05 + cos(u_time * .6) * .04, 0., d);
+    vec3 glow = cosPalette(uv.x,vec3(0.96,0.61,0.84),vec3(0.69,0.12,0.92),vec3(0.70,0.70,0.79),vec3(0.01,0.65,0.66));
+    vec3 color = vec3(m) * glow - vec3(random(i_uv));
     gl_FragColor = vec4(color,1.0);
 }
