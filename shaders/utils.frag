@@ -64,6 +64,11 @@ mat2 rotate2d(float _angle){
                 sin(_angle),cos(_angle));
 }
 
+mat2 scale(vec2 _scale){
+    return mat2(_scale.x,0.0,
+                0.0,_scale.y);
+}
+
 
 // Value noise by Inigo Quilez - iq/2013
 // https://www.shadertoy.com/view/lsf3WH
@@ -89,4 +94,10 @@ float noiseGra(vec2 st) {
                      dot( random2(i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
                 mix( dot( random2(i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
                      dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
+}
+
+
+vec2 tile(vec2 _st, float _zoom){
+    _st *= _zoom;
+    return fract(_st);
 }
