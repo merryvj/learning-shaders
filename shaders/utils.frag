@@ -23,9 +23,6 @@ vec2 random2(vec2 st){
     return -1.0 + 2.0*fract(sin(st)*43758.5453123);
 }
 
-
-
-
 //http://www.iquilezles.org/www/articles/palettes/palettes.htm 
 vec3 cosPalette( float t , vec3 brightness, vec3 contrast, vec3 osc, vec3 phase)
 {
@@ -94,6 +91,19 @@ float noiseGra(vec2 st) {
                      dot( random2(i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
                 mix( dot( random2(i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
                      dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
+}
+
+float fbm (vec2 p) {
+    float f = 0.0;
+    p*=noise(p - u_mouse * .002);
+    f += 0.5 * noise(p); p*=m*2.02;
+    f += 0.25 * noise(p); p*=m*2.03;
+    f += 0.125 * noise(p); p*=m*2.01;
+    f += 0.0625 * noise(p); p*=2.04;
+    
+    f /= 0.975;
+    return f;
+    
 }
 
 

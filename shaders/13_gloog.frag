@@ -29,7 +29,7 @@ float noise(vec2 st) {
 
 
 float shape(vec2 st, float radius) {
-        float r = length(st) + sin(atan(st.x, st.y) * 10.) * .01;
+    float r = length(st) + sin(atan(st.x, st.y) * 10.) * .01;
     r += noise(st * 10. + u_time * .1) * .1;
     return 1. - smoothstep(radius, radius + 0.001, r);
     

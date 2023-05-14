@@ -39,7 +39,7 @@ float noise(vec2 st) {
 
 float bean(vec2 uv, float radius, float index) {
     uv -= vec2(0.5);
-    uv *= rotate2d(sin(u_time + index) + index * 2. + (u_mouse.x * u_mouse.y) * .00001);
+    uv *= rotate2d(sin(u_time + index) + index * 2. + dot(u_mouse.x, u_mouse.y) * .00001);
     radius *= cos(atan(uv.x, uv.y * 2.) * .65);
     float m = smoothstep(radius, radius + 0.01, length(uv));
     return m;
