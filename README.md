@@ -1,4 +1,4 @@
-# shader-gallery
+# Learning GLSL
 
 This is an overview of my learning experience so far with learning about fragment shaders from complete 0...
 
