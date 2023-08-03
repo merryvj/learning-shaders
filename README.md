@@ -2,7 +2,7 @@
 
 This is an overview of my learning experience so far with learning about fragment shaders from complete 0...
 
-Gallery of shaders made so far: https://merryvj.github.io/shader-gallery/
+Gallery of shaders made so far: https://merryvj.github.io/learning-shaders/
 
 ### Phase 0: What is a shader?
 At this point I didn’t know how GPUs worked and what shaders could even be used for. I just dimly knew they could be incorporated in some sort of audiovisual performance setup. Visual explanations like these were helpful:
